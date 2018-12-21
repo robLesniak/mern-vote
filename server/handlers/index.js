@@ -1,4 +1,5 @@
 module.exports = {
+  ...require('./auth'),
   notFound: (req, res, next) => {
     const err = new Error('Not Found');
     err.status = 404;
@@ -8,5 +9,6 @@ module.exports = {
     res.status(err.status || 500).json({
       err: err.message || 'Something went wrong'
     })
-  }
+  },
+  
 }
