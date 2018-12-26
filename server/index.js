@@ -12,12 +12,13 @@ const port = process.env.PORT;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => res.json({
   hello: 'world'
 }));
 app.use('/api/auth', routes.auth);
+app.use('/api/polls', routes.poll);
 
 // ERRORS
 app.use(handle.notFound);
