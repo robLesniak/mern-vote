@@ -8,31 +8,31 @@ mongoose.connect(process.env.DATABASE);
 const db = require('./models');
 
 const users = [{
-    username: 'username',
-    password: 'password'
-  },
-  {
-    username: 'kelvin',
-    password: 'password'
-  },
+  username: 'username',
+  password: 'password'
+},
+{
+  username: 'asdasdasd',
+  password: 'qweqweqwe'
+},
 ];
 
 const polls = [{
-    question: 'Which is the best JavaScript framework',
-    options: ['Angular', 'React', 'VueJS'],
-  },
-  {
-    question: 'Who is the best mutant',
-    options: ['Wolverine', 'Deadpool']
-  },
-  {
-    question: 'Truth or dare',
-    options: ['Truth', 'Dare']
-  },
-  {
-    question: 'Boolean?',
-    options: ['True', 'False']
-  },
+  question: 'Question number one?',
+  options: ['Yes', 'No', 'Dunno'],
+},
+{
+  question: 'Question number two?',
+  options: ['infa', 'stosowana']
+},
+{
+  question: 'Question number three',
+  options: ['one!!111oneeon1', 'two']
+},
+{
+  question: 'hi all?',
+  options: ['123', 'Fzxce']
+},
 ];
 
 const seed = async () => {
