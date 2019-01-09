@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
-import api from '../services/api'
+import { Provider } from 'react-redux';
+import decode from 'jwt-decode';
+import { store } from '../store';
 
-export default class App extends Component {
+import { setCurrentUser, addError, setToken} from '../store/actions';
 
-  async componentDidMount(){
-    const result = await api.call('post', 'auth/login', {
-      username: 'username',
-      password: 'password'
-    }); 
-    console.log(result)
-  }
-
-  render() {
-    return (
-      <div>
-        asd
-      </div>
-    )
+if (localStorage.jwtToken) {
+  setToken(localStorage.jwtToken);
+  try {
+    store.dispatch(setCurrentUser(decode(localStorage.jwtToken)));
+  } catch(err) {
+    store.dispatch(setCurrentUser({}));
+    store.dispatch(addError(err));
   }
 }
+
+const App = () => (
+  <Provider store={store}>
+    <div>asdasdsa</div>
+  </Provider>
+)
+
+export default App;
