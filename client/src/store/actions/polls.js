@@ -1,4 +1,4 @@
-import api from '../../services/api';
+import API from '../../services/api';
 import { SET_POLLS, SET_CURRENT_POLL } from '../actionTypes';
 import { addError, removeError } from './error';
 
@@ -15,12 +15,12 @@ export const setCurrentPoll = poll => ({
 export const getPolls = () => {
   return async dispatch => {
     try {
-      const polls = await api.call('get', 'polls');
+      const polls = await API.call('get', 'polls');
       dispatch(setPolls(polls));
       dispatch(removeError());
-
     } catch (err) {
-      const error = err.responde.data;
+      const error = err.response.data;
+      console.log(error)
       dispatch(addError(error.message));
     }
   }
@@ -29,12 +29,11 @@ export const getPolls = () => {
 export const getUserPolls = () => {
   return async dispatch => {
     try {
-      const polls = await api.call('get', 'polls/user');
+      const polls = await API.call('get', 'polls/user');
       dispatch(setPolls(polls));
       dispatch(removeError());
-
     } catch (err) {
-      const error = err.responde.data;
+      const error = err.response.data;
       dispatch(addError(error.message));
     }
   }
@@ -43,10 +42,10 @@ export const getUserPolls = () => {
 export const createPoll = data => {
   return async dispatch => {
     try {
-      const poll = await api.call('post', 'polls', data);
+      const poll = await API.call('post', 'polls', data);
       dispatch(createPoll(poll));
       dispatch(removeError());
-    } catch (err) {
+    } catch (err) {      
       const error = err.response.data;
       dispatch(addError(error.message));
     }
@@ -56,20 +55,20 @@ export const createPoll = data => {
 export const getCurrentPoll = path => {
   return async dispatch => {
     try {
-      const poll = await api.call('get', `polls/${path}`);
+      const poll = await API.call('get', `polls/${path}`);
       dispatch(setCurrentPoll(poll));
       dispatch(removeError());
     } catch (err) {
       const error = err.response.data;
-      dispatch(addError(error.message));
+      dispatch(addError(error.response.data));
     }
-  }
-}
+  };
+};
 
 export const vote = (path, data) => {
   return async dispatch => {
     try {
-      const poll = await api.call('post', `polss/${path}`, data);
+      const poll = await API.call('post', `polss/${path}`, data);
       dispatch(setCurrentPoll(poll));
       dispatch(removeError());
     } catch (err) {

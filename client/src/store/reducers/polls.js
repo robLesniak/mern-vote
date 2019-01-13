@@ -12,7 +12,7 @@ export const polls = (state = [], action) => {
 export const currentPoll = (state = {}, action) => {
   switch (action.type) {
     case SET_CURRENT_POLL:
-      return action.pull;
+      return action.poll;
     default:
       return state;
   }
