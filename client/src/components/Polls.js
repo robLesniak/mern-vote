@@ -16,6 +16,7 @@ class Polls extends Component {
   }
 
   render() {
+    const { auth, getUserPolls, getPolls } = this.props;
     const polls = this.props.polls.map(poll => (
     <li onClick={() => this.handleSelect(poll._id)} key={poll._id}>
       {poll.question}
@@ -23,6 +24,12 @@ class Polls extends Component {
 
     return (
       <div>
+        {auth.isAuthenticated && (
+          <div>
+            <button onClick={getUserPolls}>My polls</button>
+            <button onClick={getPolls}>All polls</button>
+          </div>
+        )}
         <ul>
           {polls}
         </ul>
